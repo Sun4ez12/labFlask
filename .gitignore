@@ -1,0 +1,13 @@
+.venv/
+venv/
+
+.idea/
+
+__pycache__/
+*.pyc
+
+static/original_image.png
+static/puzzled_image.png
+static/histogram_original.png
+static/histogram_puzzled.png
+static/neural_img.png

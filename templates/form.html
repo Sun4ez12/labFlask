@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Индивидуальное задание</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Сдвиг квадрантов изображения</h1>
+        <a href="{{ url_for('home') }}">>> Вернуться к нейросети</a>
+        <hr>
+
+        <div class="upload-form-container">
+            <h2>Форма загрузки</h2>
+            <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+
+                <div class="form-field">
+                    {{ form.upload_file.label }}
+                    {{ form.upload_file() }}
+                </div>
+
+                <div class="form-submit">
+                    <input type="submit" value="Обработать!">
+                </div>
+            </form>
+        </div>
+
+        {% if original_img_fn %}
+        <hr>
+        <h2>Результат</h2>
+
+        <div class="results-grid">
+            <div class="result-item">
+                <p>Исходное изображение</p>
+                <img src="{{ url_for('static', filename=original_img_fn) }}" alt="Исходное изображение">
+            </div>
+
+            <div class="result-item">
+                <p>Гистограмма исходного изображения</p>
+                <img src="{{ url_for('static', filename=histogram_original_fn) }}" alt="Гистограмма исходного">
+            </div>
+
+            <div class="result-item">
+                <p>Результат (сдвиг частей по часовой стрелке)</p>
+                <img src="{{ url_for('static', filename=puzzled_img_fn) }}" alt="Результат обработки">
+            </div>
+
+            <div class="result-item">
+                <p>Гистограмма итогового изображения</p>
+                <img src="{{ url_for('static', filename=histogram_puzzled_fn) }}" alt="Гистограмма итогового">
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Нейронная сеть</title>
+</head>
+<body>
+    <h1>Нейронная сеть</h1>
+    <a href="/load">>> Индивидуальное задание</a>
+    <hr>
+
+    <h2>Загрузите изображение</h2>
+    <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ form.upload_first.label }}
+        {{ form.upload_first() }}
+        <br><br>
+        {{ form.recaptcha() }}
+        <br>
+        <input type="submit" value="Predict!">
+    </form>
+
+    {% if neur %}
+        <hr>
+        <h2>Результат</h2>
+        <p>Нейронная сеть говорит, что это: <b>{{ neur }}</b></p>
+        <img src="{{ url_for('static', filename=img_filename) }}" alt="Uploaded Image" width="200">
+    {% endif %}
+</body>
+</html>
