@@ -10,8 +10,9 @@ from werkzeug.utils import secure_filename
 import neural
 import defs
 
+bootstrap = Bootstrap()
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
+bootstrap.init_app(app)
 
 app.config["SECRET_KEY"] = "a-very-secret-key-that-you-should-change"
 app.config["RECAPTCHA_PUBLIC_KEY"] = "6Lf6hmsrAAAAAEavmY8GVt0VlMH5sMH00ZAjiyYY"
