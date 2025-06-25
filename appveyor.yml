@@ -1,0 +1,26 @@
+version: 1.0.{build}
+
+image: Visual Studio 2022
+
+build:
+  project:
+  verbosity: minimal
+
+environment:
+  PYTHON: "C:\\Python311"
+  PATH: "%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+
+install:
+  - cmd: python --version
+  - cmd: pip --version
+  - cmd: pip install -r requirements.txt
+
+build_script:
+  - cmd: python -m py_compile app.py
+  - cmd: python -m py_compile defs.py
+  - cmd: python -m py_compile neural.py
+  - cmd: echo "Syntax check passed"
+
+test: off
+
+deploy: off
