@@ -7,7 +7,7 @@ build:
   verbosity: minimal
 
 environment:
-  PYTHON: "C:\\Python311"
+  PYTHON: "C:\\Python311-x64"
   PATH: "%PYTHON%;%PYTHON%\\Scripts;%PATH%"
 
 install:
