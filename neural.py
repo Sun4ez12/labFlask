@@ -1,11 +1,9 @@
 import numpy as np
 import cv2 as cv
-from tensorflow import keras
+from tensorflow.keras.models import load_model
 
-# Загружаем модель
 try:
-    # --- ИЗМЕНЕНИЕ 1: Загружаем файл .keras ---
-    model = keras.models.load_model('image_classifier.keras')
+    model = load_model('image_classifier.keras')
     class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
     print("Модель 'image_classifier.keras' успешно загружена.")
 except Exception as e:
@@ -13,7 +11,6 @@ except Exception as e:
     model = None
 
 def recognize(image_path):
-    """Распознает изображение и возвращает имя класса."""
     if model is None:
         return "Ошибка: модель не загружена"
 
@@ -23,11 +20,8 @@ def recognize(image_path):
         image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
         image = cv.resize(image, (32, 32))
 
-        # Готовим данные для модели
         data_for_predict = np.array([image]) / 255.0
 
-        # --- ИЗМЕНЕНИЕ 2: Возвращаем стандартный .predict() ---
-        # Теперь, когда мы загрузили настоящую Keras модель, у нее есть метод .predict()
         prediction = model.predict(data_for_predict)
 
         # Находим индекс класса с самой высокой вероятностью
